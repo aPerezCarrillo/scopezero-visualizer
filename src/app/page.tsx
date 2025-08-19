@@ -363,7 +363,13 @@ export default function Scope2Visualizer() {
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="method" tickFormatter={(t) => t.replace("per_", "")} />
                 <YAxis tickFormatter={(v) => `${Math.round(v/1000)}k`} />
-                <Tooltip formatter={(v: any) => [`${formatNumber(v as number, 0)} kgCO₂e`, "Emissions"]} labelFormatter={(l) => l} />
+                <Tooltip
+                  formatter={(value: number | string) => [
+                    `${formatNumber(Number(value), 0)} kgCO₂e`,
+                    "Emissions",
+                  ]}
+                  labelFormatter={(label: string) => label}
+                />
                 <Bar dataKey="kg" name="Emissions (kgCO₂e)" />
               </BarChart>
             </ResponsiveContainer>
